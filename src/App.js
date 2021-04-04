@@ -1,23 +1,40 @@
-import logo from './logo.svg';
+import React, { useEffect, useState } from 'react';
 import './App.css';
+import Typography from '@material-ui/core/Typography';
+import Articles from './components/articles';
+import ArticleLoadingComponent from './components/articleLoading';
+import Container  from '@material-ui/core/Container';
 
 function App() {
+  const ArticleLoading = ArticleLoadingComponent(Articles);
+  
+  const [appState, setAppState] = useState({
+    loading: false,
+    articles: null,
+  });
+
+  useEffect(() => {
+    setAppState({ loading: true });
+    const apiUrl = 'http://localhost:8000/api/articles/';
+
+    fetch(apiUrl)
+      .then((data) => data.json())
+      .then((articles) => {
+        setAppState({
+          loading: false,
+          articles: articles
+        });
+      });
+  }, [setAppState]);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className='App'>
+      <Container maxWidth="lg">
+        <Typography variant="h3" component="h1" gutterBottom>
+            Latest Articles
+        </Typography>
+        <ArticleLoading isLoading={appState.loading} articles={appState.articles} />
+      </Container>
     </div>
   );
 }
