@@ -6,17 +6,21 @@ import App from './App';
 import Header from './components/header';
 import Footer from './components/footer';
 import SignUp from './components/signup';
+import Login from './components/login';
 import reportWebVitals from './reportWebVitals';
+
+const websiteName = "Wyb Blog"
 
 const routing = (
   <Router>
     <React.StrictMode>
-    <Header title="Bhaven's Blog" />
+    <Header title={websiteName} />
       <Switch>
           <Route exact path="/" component={App} />
-          <Route path="/signup/" component={SignUp} />
+          <Route path="/signup" component={SignUp} />
+          <Route path="/login" component={Login} />
       </Switch>
-      <Footer />
+      <Footer title={websiteName} />
     </React.StrictMode>
   </Router>
 );

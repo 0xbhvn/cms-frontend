@@ -34,6 +34,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function SignUp() {
   const history = useHistory();
+  
 	const initialFormData = Object.freeze({
 		email: '',
 		username: '',
@@ -78,7 +79,7 @@ export default function SignUp() {
           <LockOutlinedIcon />
         </Avatar>
         <Typography component="h1" variant="h5">
-          Sign up
+          Sign Up
         </Typography>
         <form className={classes.form} noValidate>
           <Grid container spacing={2}>
@@ -90,6 +91,8 @@ export default function SignUp() {
                 id="email"
                 label="Email Address"
                 name="email"
+                autoComplete="email"
+						    autoFocus
                 onChange={handleChange}
               />
             </Grid>
@@ -101,6 +104,7 @@ export default function SignUp() {
                 id="username"
                 label="Username"
                 name="username"
+                autoComplete="username"
                 onChange={handleChange}
               />
             </Grid>
@@ -113,6 +117,7 @@ export default function SignUp() {
                 label="Password"
                 type="password"
                 id="password"
+                autoComplete="current-password"
                 onChange={handleChange}
               />
             </Grid>
@@ -125,6 +130,7 @@ export default function SignUp() {
                 label="Confirm Password"
                 type="password"
                 id="cpassword"
+                autoComplete="current-password"
                 onChange={handleChange}
               />
             </Grid>
@@ -141,7 +147,7 @@ export default function SignUp() {
           </Button>
           <Grid container justify="flex-end">
             <Grid item>
-              <Link href="#" variant="body2">
+              <Link href="/login" variant="body2">
                 Already have an account? Sign in
               </Link>
             </Grid>

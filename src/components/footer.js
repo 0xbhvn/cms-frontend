@@ -3,22 +3,7 @@ import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import Typography from '@material-ui/core/Typography';
-import Link from '@material-ui/core/Link';
-
-function Copyright() {
-  return (
-    <Typography variant="body2" color="textSecondary" align="center">
-      {'© '}
-      {new Date().getFullYear()}
-      {', Powered by '}
-      <Link color="purple" href="https://www.djangoproject.com">Django</Link>
-      {' \u2022 '}
-      <Link color="purple" href="https://reactjs.org">React</Link>
-      {' \u2022 '}
-      <Link color="purple" href="https://www.netlify.com">Hosted on Netlify</Link>
-    </Typography>
-  );
-}
+import Copyright from './copyright';
 
 const useStyles = makeStyles((theme) => ({
   footer: {
@@ -26,30 +11,28 @@ const useStyles = makeStyles((theme) => ({
     marginTop: theme.spacing(8),
     padding: theme.spacing(6, 0),
   },
+  title: {
+    flex: 1,
+    fontFamily: '"Dela Gothic One", cursive',
+  }
 }));
 
 export default function Footer(props) {
   const classes = useStyles();
-  const { description, title } = props;
+  const { title } = props;
 
   return (
     <footer className={classes.footer}>
       <Container maxWidth="lg">
-        <Typography variant="h6" align="center" gutterBottom>
-          {title}
+        <Typography className={classes.title} variant="h6" align="center" gutterBottom>
+          { title }
         </Typography>
-        {/*
-        <Typography variant="subtitle1" align="center" color="textSecondary" component="body1">
-          {description}
-        </Typography>
-        */}
-        <Copyright />
+        <Copyright title={title}/>
       </Container>
     </footer>
   );
 }
 
 Footer.propTypes = {
-  description: PropTypes.string,
   title: PropTypes.string,
 };
