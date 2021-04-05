@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
-import axiosInstance from '../axios';
 import { useHistory } from 'react-router-dom';
+import axiosInstance from '../axios';
+
+// MaterialUI
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -53,7 +55,6 @@ export default function SignUp() {
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
-		console.log(formData);
 
 		axiosInstance
 			.post('accounts/register/', {
@@ -64,8 +65,6 @@ export default function SignUp() {
 			})
 			.then((res) => {
 				history.push('/');
-				console.log(res);
-				console.log(res.data);
 			});
 	};
 

@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
-import axiosInstance from '../axios';
 import { useHistory } from 'react-router-dom';
-//MaterialUI
+import axiosInstance from '../axios';
+
+// MaterialUI
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
