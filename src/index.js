@@ -10,6 +10,7 @@ import Footer from './components/footer';
 import SignUp from './components/signup';
 import Login from './components/login';
 import Logout from './components/logout';
+import Single from './components/single';
 
 import reportWebVitals from './reportWebVitals';
 
@@ -24,6 +25,7 @@ const routing = (
           <Route path="/signup" component={SignUp} />
           <Route path="/login" component={Login} />
           <Route path="/logout" component={Logout} />
+          <Route path="/article/:slug" component={Single} />
       </Switch>
       <Footer title={websiteName} />
     </React.StrictMode>

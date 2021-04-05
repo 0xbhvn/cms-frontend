@@ -8,6 +8,7 @@ import CardMedia from '@material-ui/core/CardMedia';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
+import Link from '@material-ui/core/Link';
 
 const useStyles = makeStyles((theme) => ({
     cardMedia: {
@@ -62,7 +63,12 @@ const Articles = (props) => {
 											component="h2"
 											className={classes.articleTitle}
                                         >
-                                            {article.title}
+                                            <Link 
+                                                color='textPrimary'
+                                                href={'article/' + article.slug}
+                                            >
+                                                {article.title}
+                                            </Link>
                                         </Typography>
                                         <div className={classes.articleText}>
                                             <Typography variant="p" color="textSecondary">

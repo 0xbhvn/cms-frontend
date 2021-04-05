@@ -2,7 +2,7 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
-import '../styles/header.css';
+import './header.css';
 
 // MaterialUI
 import { makeStyles } from '@material-ui/core/styles';
