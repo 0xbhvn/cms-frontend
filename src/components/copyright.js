@@ -18,7 +18,7 @@ export default function Copyright(props) {
     return (
       <Typography variant="body2" color="textSecondary" align="center">
         {'© '}
-        <Link color="inherit" href="/">
+        <Link color="inherit" href="https://www.twitter.com/thisisbhaven">
           { title }
         </Link>{' '}
         {new Date().getFullYear()}
