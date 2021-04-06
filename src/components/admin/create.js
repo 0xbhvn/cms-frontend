@@ -3,9 +3,8 @@ import axiosInstance from '../../axios';
 import { useHistory } from 'react-router-dom';
 
 //MaterialUI
-import { Avatar, Button, CssBaseline, TextField, Grid, Typography, Container } from '@material-ui/core';
+import { Button, CssBaseline, TextField, Grid, Typography, Container } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
-
 
 const useStyles = makeStyles((theme) => ({
 	paper: {
@@ -13,10 +12,6 @@ const useStyles = makeStyles((theme) => ({
 		display: 'flex',
 		flexDirection: 'column',
 		alignItems: 'center',
-	},
-	avatar: {
-		margin: theme.spacing(1),
-		backgroundColor: theme.palette.secondary.main,
 	},
 	form: {
 		width: '100%', // Fix IE 11 issue.
@@ -27,34 +22,46 @@ const useStyles = makeStyles((theme) => ({
 	},
 }));
 
-export default function Create() {
-	const history = useHistory(); 
+export default function Create() {	
+	const history = useHistory();
 	const initialFormData = Object.freeze({
 		title: '',
 		body: '',
 		category: '',
 	});
 
-	const [formData, updateFormData] = useState(initialFormData);
+	const [articleData, updateFormData] = useState(initialFormData);
+	const [articleImage, setArticleImage] = useState(null);
 
 	const handleChange = (e) => {
-		updateFormData({
-			...formData,
-			[e.target.name]: e.target.value.trim(),
-		});
+		if ([e.target.name] == 'image') {
+			setArticleImage({
+				image: e.target.files,
+			});
+			console.log(e.target.files);
+		} else {
+			updateFormData({
+				...articleData,
+				[e.target.name]: e.target.value.trim(),
+			});
+		}
 	};
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
-		axiosInstance
-			.post(`articles/create/`, {
-				title: formData.title,
-				body: formData.body,
-				category: formData.category,
-			})
-			.then((res) => {
-				history.push('/admin/');
-			});
+		
+		let formData = new FormData();
+
+		formData.append('title', articleData.title);
+		formData.append('body', articleData.body);
+		formData.append('category', articleData.category);
+		formData.append('image', articleImage.image[0]);
+
+		axiosInstance.post(`articles/create/`, formData);
+		history.push({
+			pathname: '/admin/',
+		});
+		window.location.reload();
 	};
 
 	const classes = useStyles();
@@ -63,7 +70,6 @@ export default function Create() {
 		<Container component="main" maxWidth="xs">
 			<CssBaseline />
 			<div className={classes.paper}>
-				<Avatar className={classes.avatar}></Avatar>
 				<Typography component="h1" variant="h5">
 					Create New Article
 				</Typography>
@@ -87,7 +93,7 @@ export default function Create() {
 								required
 								fullWidth
 								id="body"
-								label="Article Body"
+								label="Article Excerpt"
 								name="body"
 								autoComplete="body"
 								onChange={handleChange}
@@ -101,12 +107,20 @@ export default function Create() {
 								required
 								fullWidth
 								id="category"
-								label="category"
+								label="Category"
 								name="category"
-								autoComplete="category"
+								autoComplete="cateogry"
 								onChange={handleChange}
 							/>
 						</Grid>
+						<input
+							accept="image/*"
+							className={classes.input}
+							id="image"
+							onChange={handleChange}
+							name="image"
+							type="file"
+						/>
 					</Grid>
 					<Button
 						type="submit"

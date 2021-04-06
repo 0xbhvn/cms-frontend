@@ -59,7 +59,7 @@ export default function Create() {
 			body: formData.body,
 			category: formData.category,
 		});
-
+		
 		history.push({
 			pathname: '/admin/',
 		});

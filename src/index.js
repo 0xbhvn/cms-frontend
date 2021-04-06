@@ -15,6 +15,9 @@ import Admin from './Admin';
 import Create from './components/admin/create';
 import Edit from './components/admin/edit';
 import Delete from './components/admin/delete';
+import Superuser from './Superuser';
+import UserEdit from './components/superuser/edit';
+import UserDelete from './components/superuser/delete';
 
 import reportWebVitals from './reportWebVitals';
 
@@ -30,6 +33,9 @@ const routing = (
           <Route exact path="/admin/create" component={Create} />
           <Route exact path="/admin/edit/:slug" component={Edit} />
           <Route exact path="/admin/delete/:slug" component={Delete} />
+          <Route exact path="/superuser" component={Superuser} />
+          <Route exact path="/superuser/edit/:username" component={UserEdit} />
+          <Route exact path="/superuser/delete/:username" component={UserDelete} />
           <Route path="/signup" component={SignUp} />
           <Route path="/login" component={Login} />
           <Route path="/logout" component={Logout} />
