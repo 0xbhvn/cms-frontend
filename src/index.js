@@ -21,7 +21,7 @@ import UserDelete from './components/superuser/delete';
 
 import reportWebVitals from './reportWebVitals';
 
-const websiteName = "Wyb Blog"
+const websiteName = "Bhaven's Blog"
 
 const routing = (
   <Router>
