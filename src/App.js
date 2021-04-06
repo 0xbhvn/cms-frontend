@@ -1,42 +1,40 @@
 import React, { useEffect, useState } from 'react';
+import axiosInstance from './axios';
+
 import './App.css';
-import Typography from '@material-ui/core/Typography';
-import Articles from './components/articles';
-import ArticleLoadingComponent from './components/articleLoading';
-import Container  from '@material-ui/core/Container';
+import Articles from './components/articles/articles';
+import ArticlesLoadingComponent from './components/articles/articlesLoading';
+
 
 function App() {
-  const ArticleLoading = ArticleLoadingComponent(Articles);
-  
-  const [appState, setAppState] = useState({
-    loading: false,
-    articles: null,
-  });
+	const ArticlesLoading = ArticlesLoadingComponent(Articles);
 
-  useEffect(() => {
-    setAppState({ loading: true });
-    const apiUrl = 'http://localhost:8000/api/articles/';
+	const [appState, setAppState] = useState({
+		loading: true,
+		articles: null,
+	});
 
-    fetch(apiUrl)
-      .then((data) => data.json())
-      .then((articles) => {
-        setAppState({
-          loading: false,
-          articles: articles
-        });
+	useEffect(() => {
+		axiosInstance.get('articles/').then((res) => {
+			const articles = res.data;
+
+			setAppState({ 
+        loading: false, 
+        articles: articles 
       });
-  }, [setAppState]);
+			console.log(res.data);
+		});
+	}, [setAppState]);
 
-  return (
-    <div className='App'>
-      <Container maxWidth="lg">
-        <Typography variant="h3" component="h1" gutterBottom>
-            Latest Articles
-        </Typography>
-        <ArticleLoading isLoading={appState.loading} articles={appState.articles} />
-      </Container>
-    </div>
-  );
+	return (
+		<div className="App">
+			<h1>Latest Articles</h1>
+			<ArticlesLoading 
+        isLoading={appState.loading} 
+        articles={appState.articles} 
+      />
+		</div>
+	);
 }
 
 export default App;

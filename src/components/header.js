@@ -1,16 +1,13 @@
-import React from 'react';
-import { NavLink } from 'react-router-dom';
+import React, { useState } from 'react';
+import { NavLink, useHistory } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 import './header.css';
 
 // MaterialUI
+import { Toolbar, Typography, Link } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
-import Toolbar from '@material-ui/core/Toolbar';
-import IconButton from '@material-ui/core/IconButton';
-import SearchIcon from '@material-ui/icons/Search';
-import Typography from '@material-ui/core/Typography';
-import Link from '@material-ui/core/Link';
+import SearchBar from 'material-ui-search-bar';
 
 const useStyles = makeStyles((theme) => ({
   toolbar: {
@@ -35,7 +32,20 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Header(props) {
   const classes = useStyles();
+
+  let history = useHistory();
+	const [data, setData] = useState({ search: '' });
+
   const { sections, title } = props;
+
+  const goSearch = (e) => {
+		history.push({
+			pathname: '/search/',
+			search: '?search=' + data.search,
+		});
+
+		window.location.reload();
+	};
 
   return (
     <React.Fragment>
@@ -49,9 +59,11 @@ export default function Header(props) {
         >
           <Link component={NavLink} to='/' color="inherit">{ title }</Link>
         </Typography>
-        <IconButton>
-          <SearchIcon />
-        </IconButton>
+        <SearchBar
+						value={data.search}
+						onChange={(newValue) => setData({ search: newValue })}
+						onRequestSearch={() => goSearch(data.search)}
+				/>
         <Link component={NavLink} to='/signup' variant="button" color="textPrimary" className={classes.link}>
           Sign Up
         </Link>

@@ -1,7 +1,7 @@
-import React from "react";
+import React from 'react';
 
-function ArticleLoading(Component) {
-    return function ArticleLoadingComponent({ isLoading, ...props }) {
+function ArticlesLoading(Component) {
+    return function ArticlesLoadingComponent({ isLoading, ...props }) {
         if (!isLoading) return <Component {...props} />;
         
         return (
@@ -12,4 +12,4 @@ function ArticleLoading(Component) {
     };
 }
 
-export default ArticleLoading;
+export default ArticlesLoading;

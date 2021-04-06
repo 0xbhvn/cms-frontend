@@ -2,9 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 // MaterialUI
+import { Typography, Link } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
-import Typography from '@material-ui/core/Typography';
-import Link from '@material-ui/core/Link';
 
 const useStyles = makeStyles((theme) => ({
     stackLink: {

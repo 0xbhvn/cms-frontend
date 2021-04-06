@@ -1,14 +1,8 @@
 import React from 'react';
 
 // MaterialUI
+import { Card, CardContent, CardMedia, Grid, Typography, Container, Link } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
-import Card from '@material-ui/core/card';
-import CardContent from '@material-ui/core/CardContent';
-import CardMedia from '@material-ui/core/CardMedia';
-import Grid from '@material-ui/core/Grid';
-import Typography from '@material-ui/core/Typography';
-import Container from '@material-ui/core/Container';
-import Link from '@material-ui/core/Link';
 
 const useStyles = makeStyles((theme) => ({
     cardMedia: {
@@ -72,7 +66,7 @@ const Articles = (props) => {
                                         </Typography>
                                         <div className={classes.articleText}>
                                             <Typography variant="p" color="textSecondary">
-                                                by {article.author}
+                                                Posted by {article.author}
                                             </Typography>
 										</div>
                                     </CardContent>
