@@ -26,8 +26,6 @@ export default function Copyright(props) {
         <Link className={classes.stackLink} href="https://www.djangoproject.com">Django</Link>
         {' \u2022 '}
         <Link className={classes.stackLink} href="https://reactjs.org">React</Link>
-        {' \u2022 '}
-        <Link className={classes.stackLink} href="https://www.netlify.com">Hosted on Netlify</Link>
       </Typography>
     );
 }
