@@ -4,6 +4,8 @@ import PropTypes from 'prop-types';
 
 import './header.css';
 
+import HeaderMenu from './menu';
+
 // MaterialUI
 import { Toolbar, Typography, Link } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
@@ -36,7 +38,7 @@ export default function Header(props) {
   let history = useHistory();
 	const [data, setData] = useState({ search: '' });
 
-  const { sections, title } = props;
+  const { title } = props;
 
   const goSearch = (e) => {
 		history.push({
@@ -64,32 +66,8 @@ export default function Header(props) {
 						onChange={(newValue) => setData({ search: newValue })}
 						onRequestSearch={() => goSearch(data.search)}
 				/>
-        <Link component={NavLink} to='/signup' variant="button" color="textPrimary" className={classes.link}>
-          Sign Up
-        </Link>
-        <Link component={NavLink} to='/login' variant="button" color="textPrimary" className={classes.link}>
-          Login
-        </Link>
-        <Link component={NavLink} to='/logout' variant="button" color="textPrimary" className={classes.link}>
-          Logout
-        </Link>
+        <HeaderMenu></HeaderMenu>
       </Toolbar>
-      {/* 
-      <Toolbar component="nav" variant="dense" className={classes.toolbarSecondary}>
-        { sections.map((section) => (
-          <Link
-            color="inherit"
-            noWrap
-            key={section.title}
-            variant="body2"
-            href={section.url}
-            className={classes.toolbarLink}
-          >
-            { section.title }
-          </Link>
-        ))}
-      </Toolbar>
-      */}
     </React.Fragment>
   );
 }
