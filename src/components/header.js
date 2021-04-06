@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { NavLink, useHistory } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 import './header.css';
 
+import axiosInstance from '../axios';
 import HeaderMenu from './menu';
 
 // MaterialUI
@@ -40,6 +41,18 @@ export default function Header(props) {
 
   const { title } = props;
 
+  const [userState, setUserState] = useState({
+		logged_in: false,
+	})
+
+  useEffect(() => {
+		if (!localStorage.getItem('access_token')) {
+			setUserState({ 
+				logged_in: false,
+			});
+		}
+	}, [setUserState]);
+
   const goSearch = (e) => {
 		history.push({
 			pathname: '/search/',
@@ -66,7 +79,10 @@ export default function Header(props) {
 						onChange={(newValue) => setData({ search: newValue })}
 						onRequestSearch={() => goSearch(data.search)}
 				/>
-        <HeaderMenu></HeaderMenu>
+        <HeaderMenu 
+          logged_in={userState.logged_in}  
+        >
+        </HeaderMenu>
       </Toolbar>
     </React.Fragment>
   );

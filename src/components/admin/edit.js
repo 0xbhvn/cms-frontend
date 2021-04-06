@@ -25,6 +25,7 @@ const useStyles = makeStyles((theme) => ({
 export default function Create() {
 	const history = useHistory();
 	const { slug } = useParams();
+	
 	const initialFormData = Object.freeze({
 		title: '',
 		body: '',

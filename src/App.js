@@ -19,9 +19,9 @@ function App() {
 			const articles = res.data;
 
 			setAppState({ 
-        loading: false, 
-        articles: articles 
-      });
+				loading: false, 
+				articles: articles 
+			});
 			console.log(res.data);
 		});
 	}, [setAppState]);
@@ -30,9 +30,9 @@ function App() {
 		<div className="App">
 			<h1>Latest Articles</h1>
 			<ArticlesLoading 
-        isLoading={appState.loading} 
-        articles={appState.articles} 
-      />
+        		isLoading={appState.loading} 
+        		articles={appState.articles} 
+      		/>
 		</div>
 	);
 }
